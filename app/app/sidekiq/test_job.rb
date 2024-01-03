@@ -5,7 +5,6 @@ class TestJob
 
   def initialize
     logger.info "Initialize test worker"
-    binding.pry
     super
   end
 
