@@ -28,3 +28,11 @@ app_worker-1  | 2024-01-03T10:25:39.111Z pid=1 tid=c6d DEBUG: Flushed 2 metrics
 ```
 
 Hence, the worker gets initialized and is supposed to run, but doesn't actually enter the `perform` method.
+
+# Used Libraries/Frameworks
+
+- Docker / Docker Compose
+- Ruby 3.2.2
+- Ruby on Rails 7.1.2
+- Sidekiq 7.2.0
+- Sidekiq Unique Jobs 8.0.5
