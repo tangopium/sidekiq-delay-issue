@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:7.2.3
+    healthcheck:
+      test: redis-cli ping
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+  app_base:
+    build:
+      context: .
+    depends_on:
+      - redis
+    environment:
+      RAILS_ENV: development
+      REDIS_URL: "redis://redis:6379/0"
+    volumes:
+      - ./app:/app
+
+  app:
+    extends:
+      service: app_base
+    ports:
+      - "3000:3000"
+
+  app_worker:
+    extends:
+      service: app_base
+    command: "bundle exec sidekiq -C config/sidekiq.yml"
